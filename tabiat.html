@@ -2328,7 +2328,7 @@ function openD(html,print){var st=$('drawer').hidden?0:$('dbox').scrollTop;
   $('dbox').innerHTML='<div class="dact">'+(print?'<button class="pr" id="dprint">'+L("Chop etish / PDF")+'</button>':'')+'<button id="dclose">'+L("Yopish")+'</button></div>'+html;$('drawer').hidden=false;$('dbox').scrollTop=st;
   $('dclose').onclick=closeD;if(print)$('dprint').onclick=function(){window.print()};$('drawer').onclick=function(e){if(e.target===$('drawer'))closeD()}}
 /* entry notice: the page is still a preview (shown once per browser session) */
-function notice(force){
+function notice(force){return;
   var seen=false;try{seen=sessionStorage.getItem('fc_notice')==='1'}catch(e){}
   if(seen&&!force)return;DCUR=function(){notice(true)};
   $('dbox').innerHTML='<div><div class="ic">!</div><h2>'+L("Ogohlantirish")+'</h2>'+
