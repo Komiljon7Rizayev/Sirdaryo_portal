@@ -2045,9 +2045,9 @@ function renderTab(){
     r.sort(so==='low'?function(a,b){return b.low-a.low}:so==='d'?function(a,b){return a.d-b.d}:function(a,b){return a.n.localeCompare(b.n)});
     el.innerHTML='<div class="vscroll"><table class="tb"><tr><th data-s="n">'+L("Tuman")+'</th><th data-s="d">'+L("Me'yordan farq")+'</th><th data-s="low">'+L("Past maydon ulushi")+'</th></tr>'+
       r.map(function(x){return '<tr class="clk'+(x.k===S.v?' on':'')+'" data-v="'+x.k+'"><td>'+esc(x.n)+'</td><td class="'+(x.d<-0.015?'dn':x.d>0.015?'up':'')+'">'+sg(x.d)+'</td><td><span class="mb"><i style="width:'+Math.min(100,x.low)+'%;background:'+(x.low>40?'var(--c0)':x.low>25?'var(--c1)':'var(--c3)')+'"></i></span>'+f(x.low,0)+' %</td></tr>'}).join('')+'</table></div>'+
-      '<p class="cap">'+L("{0} prognozi. «Past maydon ulushi» — tuman ekin maydonining qancha qismi me'yordan past kutilmoqda. Ustun nomini bosib saralang, qatorni bosib tumanga o'ting.",dD(d))+' <a class="lnk" href="#" id="csv">'+L("Jadvalni yuklab olish (CSV)")+'</a></p>';
+      '';
     el.querySelector('table').onclick=function(e){var th=e.target.closest('th[data-s]');if(th){S.vsort=th.dataset.s;renderTab();return}var tr=e.target.closest('tr[data-v]');if(tr){var k=+tr.dataset.v;setDistrict(k===S.v?-1:k)}};
-    $('csv').onclick=function(e){e.preventDefault();csv()};
+    
   }else if(S.tab==='f'){var Lh=hot(d,12);
     el.innerHTML=(Lh.length?'<div class="hot vscroll">'+Lh.map(function(c){var v=vd(c,d),n=nd(c,d);return '<button data-c="'+c+'"><span><b>'+fname(c)+'</b> <small>'+esc(D.V[VI[c]].name)+'</small></span><span>'+ha(AREA[c],1)+'</span><b class="dn">'+sg(v-n,2)+'</b></button>'}).join('')+'</div>':'<p class="cap">'+L("Bu hududda me'yordan sezilarli past kutilayotgan dala yo'q.")+'</p>')+
       '<p class="cap">'+L("{0}: {1} uchun eng ko'p yo'qotish kutilayotgan dalalar (maydon × me'yordan pastlik). Bosing — xarita o'sha dalaga boradi.",S.v>=0?esc(D.V[S.v].name):L("Butun viloyat"),dD(d))+'</p>';
